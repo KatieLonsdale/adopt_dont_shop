@@ -14,6 +14,6 @@
   <h4>Add a Pet to this Application</h4>
   <%= render partial: "/shared/search_form", locals: {path: "/applications/#{@application.id}", method: :get}%>
   <% @pets.each do |pet| %>
-  <%= pet.name %>
+    <%= pet.name %>
   <% end %>
 <% end %>
