@@ -46,12 +46,18 @@ RSpec.describe 'the applications show page' do
 
       expect(page).to have_content("Pet: #{@pet_2.name}")
     end
+
+    it 'shows me the application status' do
+      visit "applications/#{@application_1.id}"
+
+      expect(page).to have_content("Application Status: In Progress")
+
+      visit "applications/#{@application_2.id}"
+
+      expect(page).to have_content("Application Status: In Progress")
+    end
   end
 
 end
 
 
-# names of all pets that this application is for (all names of pets should be links to their show page)
-# The Application's status, either "In Progress", "Pending", "Accepted", or "Rejected"
-
-# add index page
