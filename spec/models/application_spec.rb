@@ -19,7 +19,7 @@ RSpec.describe Application do
     end
     describe '#find_app_pets' do
       it 'returns the pets applied for on an application' do
-        expect(@application_1.find_app_pets).to eq([@pet_1.name, @pet_2.name])
+        expect(@application_1.find_app_pets).to eq([@pet_1, @pet_2])
       end
     end
   end
