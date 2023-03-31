@@ -16,16 +16,41 @@ RSpec.describe 'the applications show page' do
       visit "/applications/#{@application_1.id}"
     end
 
-    it 'shows me the name of the applicant' do
-      # visit "appli"
+    it 'shows me the applicant details' do
+      visit "applications/#{@application_1.id}"
+
+      expect(page).to have_content("Name: #{@application_1.applicant}")
+      expect(page).to have_content("Street Address: #{@application_1.street_address}")
+      expect(page).to have_content("City: #{@application_1.city}")
+      expect(page).to have_content("State: #{@application_1.state}")
+      expect(page).to have_content("Zip Code: #{@application_1.zip_code}")
+      expect(page).to have_content("Description: #{@application_1.description}")
+
+      visit "applications/#{@application_2.id}"
+
+      expect(page).to have_content("Name: #{@application_2.applicant}")
+      expect(page).to have_content("Street Address: #{@application_2.street_address}")
+      expect(page).to have_content("City: #{@application_2.city}")
+      expect(page).to have_content("State: #{@application_2.state}")
+      expect(page).to have_content("Zip Code: #{@application_2.zip_code}")
+      expect(page).to have_content("Description: #{@application_2.description}")
+    end
+
+    it 'shows me all the pets the application is for' do
+      visit "applications/#{@application_1.id}"
+
+      expect(page).to have_content("Pet: #{@pet_1.name}")
+      expect(page).to have_content("Pet: #{@pet_2.name}")
+
+      visit "applications/#{@application_2.id}"
+
+      expect(page).to have_content("Pet: #{@pet_2.name}")
     end
   end
 
 end
 
-# Name of the Applicant
-# Full Address of the Applicant including street address, city, state, and zip code
-# Description of why the applicant says they'd be a good home for this pet(s)
+
 # names of all pets that this application is for (all names of pets should be links to their show page)
 # The Application's status, either "In Progress", "Pending", "Accepted", or "Rejected"
 
