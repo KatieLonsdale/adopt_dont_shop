@@ -12,7 +12,7 @@
 
 <% if @application.status == "In Progress" %>
   <h4>Add a Pet to this Application</h4>
-  <%= render partial: "/layouts/search_form", locals: {path: "/applications/#{@application.id}", method: :get}%>
+  <%= render partial: "/shared/search_form", locals: {path: "/applications/#{@application.id}", method: :get}%>
   <% @pets.each do |pet| %>
   <%= pet.name %>
   <% end %>
