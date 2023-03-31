@@ -1,19 +1,26 @@
-<%= "Name: #{@application.applicant}" %><br><br>
-<%= "Street Address: #{@application.street_address}" %><br><br>
-<%= "City: #{@application.city}" %><br><br>
-<%= "State: #{@application.state}" %><br><br>
-<%= "Zip Code: #{@application.zip_code}" %><br><br>
-<%= "Description: #{@application.description}" %><br><br>
-<% @application.find_app_pets.each do |pet| %>
-<%= "Pet:" %>
-<%= link_to "#{pet.name}", "/pets/#{pet.id}" %><br><br>
-<% end %>
-<%= "Application Status: #{@application.status}"%>
-
-<% if @application.status == "In Progress" %>
-  <h4>Add a Pet to this Application</h4>
-  <%= render partial: "/shared/search_form", locals: {path: "/applications/#{@application.id}", method: :get}%>
-  <% @pets.each do |pet| %>
-    <%= pet.name %>
+<section id="application-info">
+  <%= "Name: #{@application.applicant}" %><br><br>
+  <%= "Street Address: #{@application.street_address}" %><br><br>
+  <%= "City: #{@application.city}" %><br><br>
+  <%= "State: #{@application.state}" %><br><br>
+  <%= "Zip Code: #{@application.zip_code}" %><br><br>
+  <%= "Description: #{@application.description}" %><br><br>
+  <% @application.find_app_pets.each do |pet| %>
+  <%= "Pet:" %>
+  <%= link_to "#{pet.name}", "/pets/#{pet.id}" %><br><br>
   <% end %>
-<% end %>
+</section>
+
+<section id="application-status">
+  <%= "Application Status: #{@application.status}"%>
+</section>
+
+<section id="add-pet">
+  <% if @application.status == "In Progress" %>
+    <h4>Add a Pet to this Application</h4>
+    <%= render partial: "/shared/search_form", locals: {path: "/applications/#{@application.id}", method: :get}%>
+    <% @pets.each do |pet| %>
+      <%= pet.name %>
+    <% end %>
+  <% end %>
+</section>
