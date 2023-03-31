@@ -1,11 +1,9 @@
 <h1>All pets</h1>
 
-<%= form_with url: "/pets", method: :get, local: true do |f| %>
-  <%= f.label :search %>
-  <%= f.text_field :search %>
-  <%= f.submit "Search" %>
+<%= render partial: "/shared/search_form", locals: {path: "/pets", method: :get}%>
+  <% @pets.each do |pet| %>
+  <%= pet.name %>
 <% end %>
-
 
 <% @pets.each do |pet| %>
   <h3><%= pet.name %></h3>
