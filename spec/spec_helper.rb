@@ -3,6 +3,8 @@ def test_data
   @application_1 = Application.create!(applicant: "Joe Smith", street_address: "123 Everywhere Street", city: "Anytown", state: "NY", zip_code: "13827", description: "I am lonely and need a pet.")
   @application_2 = Application.create!(applicant: "Jane Doe", street_address: "455 Mulberry Street", city: "Springfield", state: "MA", zip_code: "53245", description: "I like dogs.")
   @application_3 = Application.create!(applicant: "Calvin Hobbes", street_address: "8960 Windy Lane", city: "Hartford", state: "CT", zip_code: "06066", description: "Looking for a tiger.", status: "Pending")
+  @application_4 = Application.create!(applicant: "Garfield Arbuckle", street_address: "11 Drury Lane", city: "Pillsbury", state: "KY", zip_code: "04248", description: "Interested in cat who loves lasagna", status: "Accepted")
+  @application_5 = Application.create!(applicant: "Sigfried Roy", street_address: "3200 Las Vegas Boulevard", city: "Las Vegas", state: "NV", zip_code: "90342", description: "Need big white tiger", status: "Rejected")
   @pet_1 = Pet.create!(adoptable: true, age: 2, breed: "Chow Chow", name: "Spot", shelter_id: @shelter_1.id)
   @pet_2 = Pet.create!(adoptable: true, age: 2, breed: "Labrador", name: "Spike", shelter_id: @shelter_1.id)
   @pet_3 = Pet.create!(adoptable: true, age: 6, breed: "Corgi", name: "Wimbledon", shelter_id: @shelter_1.id)
