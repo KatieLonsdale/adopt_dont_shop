@@ -67,7 +67,7 @@ RSpec.describe 'the applications show page' do
       expect('Search').to appear_before("#{@pet_3.name}")
     end
     
-    xit 'only shows this section if the application has not been submitted' do
+    it 'only shows this section if the application has not been submitted' do
       visit "/applications/#{@application_3.id}"
       expect(page).to have_no_content("Add a Pet to this Application")
       expect(page).to have_no_content("Search")
