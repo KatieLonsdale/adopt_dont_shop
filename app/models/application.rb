@@ -4,6 +4,6 @@ class Application < ApplicationRecord
 
   def find_app_pets
     pets = PetsApplication.select(:pet_id).where(application_id: id)
-    Pet.where(id: pets)
+    Pet.select(:name).where(id: pets).pluck(:name)
   end
 end
