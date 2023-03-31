@@ -20,36 +20,44 @@ RSpec.describe 'application new page' do
       expect(current_path).to eq("/applications/new")
     end
 
-    it 'after clicking the link there is a new application page with a form'
+    it 'after clicking the link there is a new application page with a form' do
       visit "/applications/new"
 
-      expect(page).to have_content("Applicant Name")
-      expect(page).to have_content("Street Address")
-      expect(page).to have_content("City")
-      expect(page).to have_content("State")
-      expect(page).to have_content("Zip Code")
-      expect(page).to have_content("Description of why I would make a good home")
-      expect(page).to have_content("Submit")
+      expect(page).to have_content("New Application")
+      expect(page).to have_content("Applicant Name:")
+      expect(page).to have_content("Street Address:")
+      expect(page).to have_content("City:")
+      expect(page).to have_content("State:")
+      expect(page).to have_content("Zip Code:")
+      expect(page).to have_content("Description of why I would make a good home:")
+    end
 
-   end
+    it 'can fill in the application' do
+      visit "/applications/new"
+
+      fill_in 'applicant', with: "John Doe"
+      fill_in 'street_address', with: "456 Main St."
+      fill_in 'city', with: "Westminster"
+      fill_in 'state', with: "Colorado"
+      fill_in 'zip_code', with: "80020"
+      fill_in 'description', with: "I like critters"
+      
+      click_on "Submit"
+
+      expect(page).to have_content("John Doe")
+      expect(page).to have_content("456 Main St.")
+      expect(page).to have_content("Westminster")
+      expect(page).to have_content("Colorado")
+      expect(page).to have_content("80020")
+      expect(page).to have_content("I like critters")
+    end
+  end
 end
 
 
 
 
-# As a visitor
-# When I visit the pet index page
-# Then I see a link to "Start an Application"
-# When I click this link
-# Then I am taken to the new application page where I see a form
-# When I fill in this form with my:
 
-# Name
-# Street Address
-# City
-# State
-# Zip Code
-# Description of why I would make a good home
 # And I click submit
 # Then I am taken to the new application's show page
 # And I see my Name, address information, and description of why I would make a good home
