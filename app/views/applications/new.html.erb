@@ -1,9 +1,3 @@
-<% if flash[:error] %>
-  <div id="flash" class="flash error">
-    <%= flash[:error] %>
-  </div>
-<% end %>
-
 <section id="application">
   <h2>New Application</h2>
   <%= form_with url: '/applications', method: :post, local: true do |form| %>
