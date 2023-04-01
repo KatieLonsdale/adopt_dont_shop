@@ -20,7 +20,9 @@
     <h4>Add a Pet to this Application</h4>
     <%= render partial: "/shared/search_form", locals: {path: "/applications/#{@application.id}", method: :get}%>
     <% @pets.each do |pet| %>
+      <br>
       <%= pet.name %>
+      <%= button_to "Adopt This Pet!", {controller: "pets_applications", action: "create", application_id: @application.id, pet_id: pet.id}, method: :post %>
     <% end %>
   <% end %>
 </section>

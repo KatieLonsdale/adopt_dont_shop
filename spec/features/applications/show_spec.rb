@@ -76,6 +76,22 @@ RSpec.describe 'the applications show page' do
         expect('Search').to appear_before("#{@pet_3.name}")
       end
     end
+
+    it 'has an adopt button next to each pet name in results that adds pet to application' do
+      visit "/applications/#{@application_1.id}"
+      within("#add-pet") do
+        fill_in(:search, with: 'Wimbledon')
+        click_button('Search')
+        
+        expect(page).to have_selector(:link_or_button, 'Adopt This Pet!')
+        click_button('Adopt This Pet!')
+      end
+      
+      expect(current_path).to eq("/applications/#{@application_1.id}")
+      within("#application-info") do
+        expect(page).to have_content("Pet: #{@pet_3.name}")
+      end
+    end
     
     it 'only shows this section if the application status is In Progress' do
       visit "/applications/#{@application_3.id}"
@@ -92,5 +108,3 @@ RSpec.describe 'the applications show page' do
     end
   end
 end
-
-
