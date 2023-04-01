@@ -1,10 +1,8 @@
 <h1>All pets</h1>
 
+<%=link_to "Start an Application","/applications/new" %><br><br>
 <%= render partial: "/shared/search_form", locals: {path: "/pets", method: :get}%>
-  <% @pets.each do |pet| %>
-  <%= pet.name %>
-<% end %>
-
+  
 <% @pets.each do |pet| %>
   <h3><%= pet.name %></h3>
   <p>Age: <%= pet.age %></p>
@@ -14,3 +12,5 @@
   <%= link_to "Edit #{pet.name}", "/pets/#{pet.id}/edit" %>
   <%= link_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete %>
 <% end %>
+
+
