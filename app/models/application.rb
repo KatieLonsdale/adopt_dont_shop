@@ -8,13 +8,13 @@ class Application < ApplicationRecord
   validates :state, presence: true
   validates :zip_code, presence: true
 
-  def pets_selected?
-    pets = find_app_pets
-    pets.empty? ? false : true
-  end
-  
   def find_app_pets
     pets = PetsApplication.select(:pet_id).where(application_id: id)
     Pet.where(id: pets)
+  end
+
+  def pets_selected?
+    pets = find_app_pets
+    pets.empty? ? false : true
   end
 end
