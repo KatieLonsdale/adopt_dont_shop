@@ -1,0 +1,12 @@
+<div id="title">
+<h1>Admin Shelters Index</h1>
+</div>
+
+<div id="shetler-info">
+<% @shelters.each do |shelter| %>
+  <h3><%= shelter.name %></h3>
+  <p>City: <%= shelter.city %></p>
+  <p>Has A Foster Program: <%= shelter.foster_program %></p>
+  <p>Shelter Rank: <%= shelter.rank %> </p>
+  <% end %>
+</div>

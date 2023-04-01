@@ -32,3 +32,4 @@ Shelter.destroy_all
 @joe_spot = PetsApplication.create!(application: @application_1, pet: @pet_1)
 @joe_spike = PetsApplication.create!(application: @application_1, pet: @pet_2)
 @jane_spike = PetsApplication.create!(application: @application_2, pet: @pet_2)
+
