@@ -23,13 +23,15 @@ RSpec.describe 'application new page' do
     it 'after clicking the link there is a new application page with a form' do
       visit "/applications/new"
 
-      expect(page).to have_content("New Application")
-      expect(page).to have_content("Applicant Name:")
-      expect(page).to have_content("Street Address:")
-      expect(page).to have_content("City:")
-      expect(page).to have_content("State:")
-      expect(page).to have_content("Zip Code:")
-      expect(page).to have_content("Description of why I would make a good home:")
+      within("#application") do
+        expect(page).to have_content("New Application")
+        expect(page).to have_content("Applicant Name:")
+        expect(page).to have_content("Street Address:")
+        expect(page).to have_content("City:")
+        expect(page).to have_content("State:")
+        expect(page).to have_content("Zip Code:")
+        expect(page).to have_content("Description of why I would make a good home:")
+      end
     end
 
     it 'can fill in the application' do
@@ -43,22 +45,16 @@ RSpec.describe 'application new page' do
       fill_in 'description', with: "I like critters"
       
       click_on "Submit"
-
-      expect(page).to have_content("John Doe")
-      expect(page).to have_content("456 Main St.")
-      expect(page).to have_content("Westminster")
-      expect(page).to have_content("Colorado")
-      expect(page).to have_content("80020")
-      expect(page).to have_content("I like critters")
+      
+      within("#application") do
+        expect(page).to have_content("John Doe")
+        expect(page).to have_content("456 Main St.")
+        expect(page).to have_content("Westminster")
+        expect(page).to have_content("Colorado")
+        expect(page).to have_content("80020")
+        expect(page).to have_content("I like critters")
+      end
     end
   end
 end
 
-
-
-
-
-# And I click submit
-# Then I am taken to the new application's show page
-# And I see my Name, address information, and description of why I would make a good home
-# And I see an indicator that this application is "In Progress"

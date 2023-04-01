@@ -11,7 +11,7 @@ RSpec.describe 'the applications show page' do
 
     it 'shows me the applicant details' do
       visit "applications/#{@application_1.id}"
-
+      
       expect(page).to have_content("Name: #{@application_1.applicant}")
       expect(page).to have_content("Street Address: #{@application_1.street_address}")
       expect(page).to have_content("City: #{@application_1.city}")
