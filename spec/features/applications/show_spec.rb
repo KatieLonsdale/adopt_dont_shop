@@ -111,10 +111,10 @@ RSpec.describe 'the applications show page' do
   describe 'and one or more pets are added to the application' do
     it 'has a section to enter why I would be a good owner' do
       visit "/applications/#{@application_1.id}"
-      # within("#submit-app") do
+      within("#submit-app") do
         expect(page).to have_content("Why would you be a good owner for these pet(s)?")
-        fill_in("description", with: "Really long explanation")
-      # end
+        fill_in(:description, with: "Really long explanation")
+      end
     end
     xit 'has a section to submit my application' do
       visit "/applications/#{@application_1.id}"
