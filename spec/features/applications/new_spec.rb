@@ -19,8 +19,8 @@ RSpec.describe 'application new page' do
 
       expect(current_path).to eq("/applications/new")
     end
-
-    it 'after clicking the link there is a new application page with a form' do
+  describe 'after clicking the link there is a new application page with a form' do
+    it 'exists' do
       visit "/applications/new"
 
       within("#application") do
@@ -56,5 +56,55 @@ RSpec.describe 'application new page' do
       end
     end
   end
-end
 
+  describe 'can tell the user to fill in required fields when a form is not fully filled in'
+    it 'will not accept an application without all fields filled in' do
+      visit "/applications/new"
+
+      fill_in 'applicant', with: "John Doe"
+      fill_in 'street_address', with: "456 Main St."
+      fill_in 'city', with: "Westminster"
+      fill_in 'state', with: "Colorado"
+      fill_in 'zip_code', with: "80020"
+
+      click_on "Submit"
+
+      expect(current_path).to eq("/applications/new")
+
+      within("#flash") do
+        expect(page).to have_content("Please ensure all fields are filled in.")
+      end
+    end
+
+    it 'will accept the application after all fields are filled in after receiving flash error' do
+      visit "/applications/new"
+
+      fill_in 'applicant', with: "John Doe"
+      fill_in 'street_address', with: "456 Main St."
+      fill_in 'city', with: "Westminster"
+      fill_in 'state', with: "Colorado"
+      fill_in 'zip_code', with: "80020"
+
+      click_on "Submit"
+
+      fill_in 'applicant', with: "John Doe"
+      fill_in 'street_address', with: "456 Main St."
+      fill_in 'city', with: "Westminster"
+      fill_in 'state', with: "Colorado"
+      fill_in 'zip_code', with: "80020"
+      fill_in 'description', with: "I like critters"
+
+      click_on "Submit"
+
+      within("#application-info") do
+        expect(page).to have_content("John Doe")
+        expect(page).to have_content("456 Main St.")
+        expect(page).to have_content("Westminster")
+        expect(page).to have_content("Colorado")
+        expect(page).to have_content("80020")
+        expect(page).to have_content("I like critters")
+      end
+    end
+
+  end
+end
