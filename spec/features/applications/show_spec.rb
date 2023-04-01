@@ -107,4 +107,37 @@ RSpec.describe 'the applications show page' do
       expect(page).to have_no_content("Search")
     end
   end
+
+  describe 'and one or more pets are added to the application' do
+    it 'has a section to enter why I would be a good owner' do
+      visit "/applications/#{@application_1.id}"
+      
+      within("#submit-app") do
+        expect(page).to have_content("Why would you be a good owner for these pet(s)?")
+        fill_in(:description, with: "Really long explanation")
+        click_button("Submit Application")
+        expect(current_path).to eq("/applications/#{@application_1.id}")
+      end
+      within("#application-info") do
+        expect(page).to have_content("Name: #{@application_1.applicant}")
+        expect(page).to have_content("Street Address: #{@application_1.street_address}")
+        expect(page).to have_content("City: #{@application_1.city}")
+        expect(page).to have_content("State: #{@application_1.state}")
+        expect(page).to have_content("Zip Code: #{@application_1.zip_code}")
+        expect(page).to have_content("Really long explanation")
+      end
+      within('#application-status') do
+        expect(page).to have_content("Application Status: Pending")
+      end
+      within('#add-pet') do
+        expect(page).to have_no_content("Add a Pet to this Application!")
+      end
+    end
+    it 'does not show this section if I have no pets added to my application' do
+      visit "/applications/#{@application_6.id}"
+      within("#submit-app") do
+        expect(page).to have_no_content("Why would you be a good owner for these pet(s)?")
+      end
+    end
+  end
 end
