@@ -129,6 +129,9 @@ RSpec.describe 'the applications show page' do
       within('#application-status') do
         expect(page).to have_content("Application Status: Pending")
       end
+      within('#add-pet') do
+        expect(page).to have_no_content("Add a Pet to this Application!")
+      end
     end
     it 'does not show this section if I have no pets added to my application' do
       visit "/applications/#{@application_6.id}"
