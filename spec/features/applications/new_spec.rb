@@ -45,8 +45,8 @@ RSpec.describe 'application new page' do
       fill_in 'description', with: "I like critters"
       
       click_on "Submit"
-      
-      within("#application") do
+
+      within("#application-info") do
         expect(page).to have_content("John Doe")
         expect(page).to have_content("456 Main St.")
         expect(page).to have_content("Westminster")
