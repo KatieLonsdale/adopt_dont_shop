@@ -9,5 +9,18 @@
   <%= "Pet:" %>
   <%= link_to "#{pet.name}", "/pets/#{pet.id}" %><br><br>
   <% end %>
+</section>
+
+<section id="application-status">
   <%= "Application Status: #{@application.status}"%>
+</section>
+
+<section id="add-pet">
+  <% if @application.status == "In Progress" %>
+    <h4>Add a Pet to this Application</h4>
+    <%= render partial: "/shared/search_form", locals: {path: "/applications/#{@application.id}", method: :get}%>
+    <% @pets.each do |pet| %>
+      <%= pet.name %>
+    <% end %>
+  <% end %>
 </section>
