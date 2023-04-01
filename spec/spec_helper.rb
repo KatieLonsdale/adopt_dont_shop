@@ -1,6 +1,6 @@
 def test_data
   @shelter_1 = Shelter.create!(foster_program: true, name: "Chatfield Vet", city: "Littleton", rank: 1)
-  @application_1 = Application.create!(applicant: "Joe Smith", street_address: "123 Everywhere Street", city: "Anytown", state: "NY", zip_code: "13827", description: "I am lonely and need a pet.")
+  @application_1 = Application.create!(applicant: "Joe Smith", street_address: "123 Everywhere Street", city: "Anytown", state: "NY", zip_code: "13827", description: "")
   @application_2 = Application.create!(applicant: "Jane Doe", street_address: "455 Mulberry Street", city: "Springfield", state: "MA", zip_code: "53245", description: "I like dogs.")
   @application_3 = Application.create!(applicant: "Calvin Hobbes", street_address: "8960 Windy Lane", city: "Hartford", state: "CT", zip_code: "06066", description: "Looking for a tiger.", status: "Pending")
   @application_4 = Application.create!(applicant: "Garfield Arbuckle", street_address: "11 Drury Lane", city: "Pillsbury", state: "KY", zip_code: "04248", description: "Interested in cat who loves lasagna", status: "Accepted")
