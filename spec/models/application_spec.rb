@@ -26,7 +26,7 @@ RSpec.describe Application do
     describe '#pets_selected?' do
       it 'returns true if there are pets on the application' do
         expect(@application_1.pets_selected?).to be true
-        expect(@application_6.pets_selected?).to be false
+        expect(@application_7.pets_selected?).to be false
       end
     end
   end
