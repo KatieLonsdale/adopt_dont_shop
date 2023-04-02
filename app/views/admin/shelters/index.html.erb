@@ -1,12 +1,22 @@
 <div id="title">
-<h1>Admin Shelters Index</h1>
+  <h1>Admin Shelters Index</h1><br>
 </div>
 
 <div id="shetler-info">
-<% @shelters.each do |shelter| %>
-  <h3><%= shelter.name %></h3>
-  <p>City: <%= shelter.city %></p>
-  <p>Has A Foster Program: <%= shelter.foster_program %></p>
-  <p>Shelter Rank: <%= shelter.rank %> </p>
+<h2>All Shelters:</h2>
+  <% @shelters.each do |shelter| %>
+    <h3><%= shelter.name %></h3>
+    <p>City: <%= shelter.city %></p>
+    <p>Has A Foster Program: <%= shelter.foster_program %></p>
+    <p>Shelter Rank: <%= shelter.rank %> </p>
+    <% end %>
+  </div>
+<br><br>
+
+<div id="shetler-with-apps-info">
+  <h2>Shelters with Pending Applications:</h2>
+  <% @shelters_with_apps.each do |shelter| %>
+    <h3><%= shelter.name %></h3>
   <% end %>
 </div>
+<br>
