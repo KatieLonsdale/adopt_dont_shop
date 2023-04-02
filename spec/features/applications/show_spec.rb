@@ -172,7 +172,7 @@ RSpec.describe 'the applications show page' do
       end
     end
     it 'does not show this section if I have no pets added to my application' do
-      visit "/applications/#{@application_6.id}"
+      visit "/applications/#{@application_7.id}"
       within("#submit-app") do
         expect(page).to have_no_content("Why would you be a good owner for these pet(s)?")
       end
