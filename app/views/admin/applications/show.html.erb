@@ -1,0 +1,21 @@
+<section id="application-info">
+  <%= "Name: #{@application.applicant}" %><br><br>
+  <%= "Street Address: #{@application.street_address}" %><br><br>
+  <%= "City: #{@application.city}" %><br><br>
+  <%= "State: #{@application.state}" %><br><br>
+  <%= "Zip Code: #{@application.zip_code}" %><br><br>
+  <%= "Description: #{@application.description}" %><br><br>
+  <% @application.find_app_pets.each do |pet| %>
+    <%= "Pet:" %>
+    <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+      <% if @application.status == "Pending" || @application.status == "In Progress" %>
+        <%= button_to "Approve #{pet.name}", {controller: "admin/applications", action: "update", application_id: @application.id, pet_id: pet.id}, method: :patch %> <br><br>
+      <% else %> 
+        <br><br><%="Pet Status: #{@application.status}" %>
+      <% end %>
+  <% end %>
+</section>
+<br>
+<section id="application-status">
+  <%= "Application Status: #{@application.status}"%>
+</section>
