@@ -7,7 +7,7 @@ def test_data
   @application_3 = Application.create!(applicant: "Calvin Hobbes", street_address: "8960 Windy Lane", city: "Hartford", state: "CT", zip_code: "06066", status: "Pending")
   @application_4 = Application.create!(applicant: "Garfield Arbuckle", street_address: "11 Drury Lane", city: "Pillsbury", state: "KY", zip_code: "04248", status: "Accepted")
   @application_5 = Application.create!(applicant: "Sigfried Roy", street_address: "3200 Las Vegas Boulevard", city: "Las Vegas", state: "NV", zip_code: "90342", status: "Rejected")
-  @application_6 = Application.create!(applicant: "Ella Fitzgerald", street_address: "4565 Main Street", city: "Newport News", state: "VA", zip_code: "12345", status: "Pending")
+  @application_6 = Application.create!(applicant: "Ella Fitzgerald", street_address: "4565 Main Street", city: "Newport News", state: "VA", zip_code: "12345", description: "Dogs inspire me", status: "Pending")
   @application_7 = Application.create!(applicant: "Regina Phalange", street_address: "4246 Friends Circle", city: "New York", state: "NY", zip_code: "43245")
   @pet_1 = Pet.create!(adoptable: true, age: 2, breed: "Chow Chow", name: "Spot", shelter_id: @shelter_1.id)
   @pet_2 = Pet.create!(adoptable: true, age: 2, breed: "Labrador", name: "Spike", shelter_id: @shelter_1.id)
@@ -18,6 +18,7 @@ def test_data
   @joe_spike = PetsApplication.create!(application: @application_1, pet: @pet_2)
   @jane_spike = PetsApplication.create!(application: @application_2, pet: @pet_2)
   @ella_roo = PetsApplication.create!(application: @application_6, pet: @pet_4)
+  @ella_wimbledon = PetsApplication.create!(application: @application_6, pet: @pet_3)
   @calvin_betty = PetsApplication.create!(application: @application_3, pet: @pet_5)
 end
 
