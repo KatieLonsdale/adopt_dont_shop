@@ -77,6 +77,16 @@ RSpec.describe 'the applications show page' do
       end
     end
 
+    it 'can match a partial search' do
+      visit "/applications/#{@application_1.id}"
+      within("#add-pet") do
+        fill_in(:search, with: 'Sp')
+        click_button('Search')
+        expect(page).to have_content("#{@pet_1.name}")
+        expect(page).to have_content("#{@pet_2.name}")
+      end
+    end
+
     it 'has an adopt button next to each pet name in results that adds pet to application' do
       visit "/applications/#{@application_1.id}"
       within("#add-pet") do
