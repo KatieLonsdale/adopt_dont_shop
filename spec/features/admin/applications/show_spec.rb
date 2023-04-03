@@ -86,4 +86,50 @@ RSpec.describe 'the admin application show page' do
       end
     end
   end
+
+  describe 'When there are two applications in the system for the same pet and I approve or reject the pet for that application' do
+    it "I visit the other application's admin show page then I do not see that the pet has been accepted or rejected for that application" do
+      visit "/admin/applications/#{@application_1.id}"
+
+      click_on 'Reject Spike'
+
+      within("#application-status") do
+        expect(page).to have_content("Rejected")
+      end
+
+      visit "/admin/applications/#{@application_2.id}"
+
+      within("#application-info") do
+        expect(page).to_not have_content("Pet Status")
+      end
+    end
+
+    it 'Shows buttons to approve or reject the pet for this specific application' do
+      visit "/admin/applications/#{@application_1.id}"
+
+      click_on 'Reject Spike'
+
+      visit "/admin/applications/#{@application_2.id}"
+
+      within("#application-info") do
+        expect(page).to have_selector(:link_or_button, 'Reject Spike')
+      end
+    end
+
+    it 'can also do it for approve' do
+      visit "/admin/applications/#{@application_1.id}"
+
+      click_on 'Approve Spike'
+
+      within("#application-status") do
+        expect(page).to have_content("Approved")
+      end
+
+      visit "/admin/applications/#{@application_2.id}"
+
+      within("#application-info") do
+        expect(page).to_not have_content("Pet Status")
+      end
+    end
+  end
 end
