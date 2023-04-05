@@ -16,7 +16,6 @@ RSpec.describe 'application new page' do
       visit "/pets"
 
       click_on "Start an Application"
-
       expect(current_path).to eq("/applications/new")
     end
   describe 'after clicking the link there is a new application page with a form' do
@@ -65,10 +64,26 @@ RSpec.describe 'application new page' do
 
       click_on "Submit"
 
-      expect(current_path).to eq("/applications/new")
+      within("#flash") do
+        expect(page).to have_content("Error: Zip code can't be blank")
+        expect(page).to have_content("Zip code is the wrong length (should be 5 characters)")
+        expect(page).to have_content("Zip code is not a number")
+      end
+    end
+
+    it 'will not accept a name less than two characters' do
+      visit "/applications/new"
+
+      fill_in 'applicant', with: "J"
+      fill_in 'street_address', with: "456 Main St."
+      fill_in 'city', with: "Westminster"
+      fill_in 'state', with: "Colorado"
+      fill_in 'zip_code', with: "80020"
+
+      click_on "Submit"
 
       within("#flash") do
-        expect(page).to have_content("Please ensure all fields are filled in.")
+        expect(page).to have_content("Error: Applicant is too short (minimum is 2 characters)")
       end
     end
 

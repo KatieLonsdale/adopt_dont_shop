@@ -13,8 +13,8 @@ class ApplicationsController < ApplicationController
     if @application.save
       redirect_to "/applications/#{@application.id}"
     else
-      flash[:error] = "Please ensure all fields are filled in."
-      redirect_to "/applications/new"
+      flash[:error] = "Error: #{error_message(@application.errors)}"
+      render :new
     end
   end
 
@@ -22,7 +22,6 @@ class ApplicationsController < ApplicationController
     application = Application.find(params[:application_id])
     application.update(application_params)
     application.update(status: "Pending")
-    application.save
     redirect_to "/applications/#{application.id}"
   end
 
