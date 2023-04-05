@@ -14,7 +14,7 @@ class ApplicationsController < ApplicationController
       redirect_to "/applications/#{@application.id}"
     else
       flash[:error] = "Error: #{error_message(@application.errors)}"
-      redirect_to "/applications/new"
+      render :new
     end
   end
 
@@ -22,7 +22,6 @@ class ApplicationsController < ApplicationController
     application = Application.find(params[:application_id])
     application.update(application_params)
     application.update(status: "Pending")
-    application.save
     redirect_to "/applications/#{application.id}"
   end
 
