@@ -3,9 +3,7 @@ class Application < ApplicationRecord
   has_many :pets, through: :pets_applications
 
   validates :applicant, presence: true, length: { minimum: 2 }
-  validates :street_address, presence: true
-  validates :city, presence: true
-  validates :state, presence: true
+  validates_presence_of :street_address, :city, :state
   validates :zip_code, presence: true, length: { is: 5}, numericality: { only_integer: true }
 
   def find_app_pets
