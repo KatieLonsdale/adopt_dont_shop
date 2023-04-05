@@ -13,7 +13,7 @@ class ApplicationsController < ApplicationController
     if @application.save
       redirect_to "/applications/#{@application.id}"
     else
-      flash[:error] = "Please ensure all fields are filled in."
+      flash[:error] = "Error: #{error_message(@application.errors)}"
       redirect_to "/applications/new"
     end
   end
