@@ -68,7 +68,9 @@ RSpec.describe 'application new page' do
       expect(current_path).to eq("/applications/new")
 
       within("#flash") do
-        expect(page).to have_content("Please ensure all fields are filled in.")
+        expect(page).to have_content("Error: Zip code can't be blank")
+        expect(page).to have_content("Zip code is the wrong length (should be 5 characters)")
+        expect(page).to have_content("Zip code is not a number")
       end
     end
 
