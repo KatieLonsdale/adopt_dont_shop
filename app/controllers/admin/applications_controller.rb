@@ -10,7 +10,6 @@ class Admin::ApplicationsController < ApplicationController
     else
       @application.update(status: "Rejected")
     end
-    @application.save
     redirect_to "/admin/applications/#{@application.id}"
   end
 end
